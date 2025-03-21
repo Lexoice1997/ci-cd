@@ -1,0 +1,51 @@
+name: Deploy to Vercel
+
+on:
+  push:
+
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+    outputs:
+      has_pr: ${{ steps.check.outputs.has_pr }}
+    steps:
+      - name: Check if branch has an open PR
+        id: check
+        run: |
+          PR_COUNT=$(gh pr list --head "${{ github.ref_name }}" --state open --repo ${{ github.repository }} --json number --jq '. | length')
+          if [[ "$PR_COUNT" -gt 0 ]]; then
+            echo "has_pr=true" >> "$GITHUB_ENV"
+          else
+            echo "has_pr=false" >> "$GITHUB_ENV"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: check-pr
+    if: needs.check-pr.outputs.has_pr == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22+
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-args: '--prod'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
