@@ -92,7 +92,7 @@
     
       <div class="filter">
         <div class="filter__type">
-          <h3 class="filter__title">Category</h3>
+          <h2 class="filter__title filter__category">Category</h2>
           <ul id='check-type' class="filter__list">
             <li class="check">
               <label class="check__label">Succulent
@@ -177,20 +177,20 @@
           <h3 class="filter__title">Price</h3>
           <div class="range">
             <div class="range__value">
-              <span>min</span>
-              <input type="number" class="input-min" value="1" max="100">
+              <label for="price_min">min</label>
+              <input type="number" class="input-min" value="1" max="100" id="price_min">
               <span>$</span>
               <div class="range__separator">-</div>
-              <span>max</span>
-              <input type="number" class="input-max" value="100" max="100">
+              <label for="price_max">max</label>
+              <input type="number" class="input-max" value="100" max="100" id="price_max">
               <span>$</span>
             </div>
             <div class="range__slider slider">
               <div class="slider__progress"></div>
             </div>
             <div class="range__range-input">
-              <input type="range" class="range-min" min="1" max="106" value="1" step="1">
-              <input type="range" class="range-max" min="1" max="100" value="100" step="1">
+              <input type="range" class="range-min" min="1" max="106" value="1" step="1" aria-label="range">
+              <input type="range" class="range-max" min="1" max="100" value="100" step="1" aria-label="range">
             </div>
           </div>
         </div>
@@ -207,18 +207,18 @@
           <h3 class="filter__title">Stock</h3>
           <div class="range">
             <div class="range__value">
-              <span>min</span>
-              <input type="number" class="input-min" value="1" max="65">
+              <label for="stock_min">min</label>
+              <input type="number" class="input-min" value="1" max="65" id="stock_min">
               <div class="range__separator">-</div>
-              <span>max</span>
-              <input type="number" class="input-max" value="65" max="65">
+              <label for="stock_max">max</label>
+              <input type="number" class="input-max" value="65" max="65" id="stock_max">
             </div>
             <div class="range__slider slider">
               <div class="slider__progress"></div>
             </div>
             <div class="range__range-input">
-              <input type="range" class="range-min" min="1" max="69" value="1" step="1">
-              <input type="range" class="range-max" min="1" max="65" value="65" step="1">
+              <input type="range" class="range-min" min="1" max="69" value="1" step="1" aria-label="range">
+              <input type="range" class="range-max" min="1" max="65" value="65" step="1" aria-label="range">
             </div>
           </div>
         </div>
@@ -360,15 +360,15 @@
                 <div class="full-cart-page__pagination-pages">
                   <span class="full-cart-page__pagination-text">Page</span>
                   <button class="button-arrow" id="paginationPageDown">&lt;</button>
-                  <input class="amount-number" id="paginationCurrentPage" type="number" min="1" max="10" value="1" disabled>
+                  <input class="amount-number" id="paginationCurrentPage" type="number" min="1" max="10" value="1" disabled aria-label="pagination">
                   <button class="button-arrow" id="paginationPageUp">&gt;</button>
                   <span class="full-cart-page__pagination-text">of</span>
-                  <input class="amount-number" id="pagination-max-pages" type="number" min="1" max="10" value="2" disabled>
+                  <input class="amount-number" id="pagination-max-pages" type="number" min="1" max="10" value="2" disabled  aria-label="pagination">
                 </div>
                 <div class="full-cart-page__pagination-items">
                   <span class="full-cart-page__pagination-text">Items on page:</span>
                   <button class="button-arrow" id="pagination-items-minus">&lt;</button>
-                  <input class="amount-number" id="pagination-items" type="text" disabled>
+                  <input class="amount-number" id="pagination-items" type="text" disabled  aria-label="pagination">
                   <button class="button-arrow" id="pagination-items-plus">&gt;</button>
                 </div>
               </div>
@@ -431,7 +431,7 @@
                   <span class="product__old-price"></span>
                   <div class="product__amount">
                     <button class="button-arrow product__left-arrow">&lt;</button>
-                    <input class="product__amount-number amount-number" type="number" min="0" value="1" disabled>
+                    <input class="product__amount-number amount-number" type="number" min="0" value="1" disabled aria-label="pagination">
                     <button class="button-arrow product__right-arrow">&gt;</button>
                   </div>
                 </div>
